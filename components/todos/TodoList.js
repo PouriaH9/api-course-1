@@ -1,7 +1,7 @@
 import { CheckIcon, PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 
-const TodoList = ({ data, onDelete }) => {
+const TodoList = ({ data, onDelete , onComplete }) => {
   return (
     <div className="container p-2 xl:max-w-screen-xl mx-auto">
       <section className="flex items-center justify-center">
@@ -14,12 +14,23 @@ const TodoList = ({ data, onDelete }) => {
               >
                 <Link href={`/todos/${todo._id}`}>
                   <a>
-                    <span>{todo.title}</span>
+                    <span
+                      className={`${todo.isCompleted ? "line-through" : ""}`}
+                    >
+                      {todo.title}
+                    </span>
                   </a>
                 </Link>
                 <div className="flex p-1 ">
-                  <button className="flex items-center justify-between mr-3">
-                    <CheckIcon className="h-7 w-7 text-green-500" />
+                  <button
+                    onClick={()=> onComplete(todo._id)}
+                    className="flex items-center justify-between mr-3"
+                  >
+                    {todo.isCompleted ? (
+                      <CheckIcon className="h-7 w-7 text-green-500" />
+                    ) : (
+                      <span className="w-5 h-5 block border-2 border rounded-full"></span>
+                    )}
                   </button>
                   <button
                     onClick={() => onDelete(todo._id)}

@@ -25,7 +25,16 @@ export default function Home({ todos }) {
       .then(({ data }) => {
         console.log(data);
         setData(data.todos);
-        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const completeHandler = (id) => {
+    axios
+      .put(`/api/todos/complete/${id}`)
+      .then(({ data }) => {
+        console.log(data);
+        setData(data.todos);
       })
       .catch((err) => console.log(err));
   };
@@ -43,7 +52,11 @@ export default function Home({ todos }) {
         {/* end of todoForm */}
         {/* TodoList */}
         <div className="w-1/2 ">
-          <TodoList data={data} onDelete={deleteTodo} />
+          <TodoList
+            data={data}
+            onDelete={deleteTodo}
+            onComplete={completeHandler}
+          />
         </div>
         {/* end of TodoList */}
       </section>
