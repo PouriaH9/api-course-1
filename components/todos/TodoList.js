@@ -27,9 +27,13 @@ const TodoList = ({ data, onDelete }) => {
                   >
                     <TrashIcon className="h-5 w-5 text-red-500" />
                   </button>
-                  <button className="flex items-center justify-between mr-3">
-                    <PencilAltIcon className="h-5 w-5 text-blue-500" />
-                  </button>
+                  <Link href={`/todos/edit/${todo._id}`}>
+                    <a className="block">
+                      <button className="flex items-center justify-between mr-3">
+                        <PencilAltIcon className="h-5 w-5 text-blue-500" />
+                      </button>
+                    </a>
+                  </Link>
                 </div>
               </div>
             );
