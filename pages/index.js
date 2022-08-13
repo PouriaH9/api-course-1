@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import TodoList from "../components/todos/todoList";
 import TodoForm from "../components/todos/AddNewTodo";
 import Todo from "../server/models/todo";
+import Layout from "../containers/Layout";
 
 export default function Home({ todos }) {
   const [data, setData] = useState(todos);
@@ -40,16 +41,13 @@ export default function Home({ todos }) {
   };
 
   return (
-    <div className="bg-stone-900 h-screen font-serif w-screen ">
-      <nav className=" ml-auto mr-auto w-1/2 text-center text-2xl p-4 border-b-4 border-b-indigo-500 ">
-        <h1 className="text-white">to do list using Next.js & Tailwind </h1>
-      </nav>
+    <Layout>
       <section className="w-full h-full flex flex-row">
         {/* todoForm */}
         <div className="w-1/2">
           <TodoForm onAdd={addTodo} />
         </div>
-        {/* end of todoForm */}
+
         {/* TodoList */}
         <div className="w-1/2 ">
           <TodoList
@@ -58,9 +56,8 @@ export default function Home({ todos }) {
             onComplete={completeHandler}
           />
         </div>
-        {/* end of TodoList */}
       </section>
-    </div>
+    </Layout>
   );
 }
 
